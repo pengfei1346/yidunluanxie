@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+</head>
+<body>
+  <div onclick="onButtonClick()">点我点我</div>
+</body>
+<script>
+  //switch写法 一元判断
+  // var mouth = parseInt(prompt("请输入月份"));
+  // var isShow = true;
+  // var msg = false
+  // switch (msg) {
+  //   case true:
+  //     console.log(1111);
+  //     break;
+  //   case false:
+  //     console.log(2222);
+  //     break;
+  //   // default:    //默认
+  //   //   alert("...");
+  // }
+
+  //二元判断 Map写法  查询条件拼接为字符串
+  // const actions = new Map([
+  //   ['guest_1', ()=>{/*do sth*/}],
+  //   ['guest_2', ()=>{/*do sth*/}],
+  //   ['master_1', ()=>{/*do sth*/}],
+  //   ['master_2', ()=>{/*do sth*/}],
+  //   ['default', ()=>{console.log('000')}],
+  // ])
+  // const onButtonClick = (identity,status)=>{
+  //   let action = actions.get(`${identity}_${status}`) || actions.get('default')
+  //   action.call(this)
+  // }
+
+  //二元判断 对象写法 查询条件拼接为字符串
+  // const actions = {
+  //   'guest_1':()=>{/*do sth*/},
+  //   'guest_2':()=>{/*do sth*/},
+  //   'default': ()=>{console.log('000')},
+  // }
+  //
+  // const onButtonClick = (identity,status)=>{
+  //   let action = actions[`${identity}_${status}`] || actions['default']
+  //   action.call(this)
+  // }
+
+  //多元判断 Map写法，以Object对象作为key：
+  // const actions = new Map([
+  //   [{identity:'guest',status:1},()=>{/*do sth*/}],
+  //   [{identity:'guest',status:2},()=>{/*do sth*/}],
+  //   //...
+  // ])
+  //
+  // const onButtonClick = (identity,status)=>{
+  //   let action = [...actions].filter(([key,value])=>(key.identity == identity && key.status == status))
+  //   action.forEach(([key,value])=>value.call(this))
+  // }
+
+
+  //guest下 ， status1-4的处理逻辑都一样
+  // const actions = ()=>{
+  //   const functionA = ()=>{/*do sth*/}
+  //   const functionB = ()=>{/*do sth*/}
+  //   return new Map([
+  //     [{identity:'guest',status:1},functionA],
+  //     [{identity:'guest',status:2},functionA],
+  //     [{identity:'guest',status:3},functionA],
+  //     [{identity:'guest',status:4},functionA],
+  //     [{identity:'guest',status:5},functionB],
+  //     //...
+  //   ])
+  // }
+  //
+  // const onButtonClick = (identity,status)=>{
+  //   let action = [...actions()].filter(([key,value])=>(key.identity == identity && key.status == status))
+  //   action.forEach(([key,value])=>value.call(this))
+  // }
+
+
+  //dentity有3种状态，status有10种状态，那你需要定义30条处理逻辑，而往往这些逻辑里面很多都是相同的
+  // const actions = ()=>{
+  //   const functionA = ()=>{/*do sth*/}
+  //   const functionB = ()=>{/*do sth*/}
+  //   return new Map([
+  //     [/^guest_[1-4]$/,functionA],
+  //     [/^guest_5$/,functionB],
+  //     //...
+  //   ])
+  // }
+  // const onButtonClick = (identity,status)=>{
+  //   let action = [...actions()].filter(([key,value])=>(key.test(`${identity}_${status}`)))
+  //   action.forEach(([key,value])=>value.call(this))
+  // }
+
+
+  //正则类型作为key  不同status情况也需要单独的逻辑处理
+  // const actions = ()=>{
+  //   const functionA = ()=>{/*do sth*/}
+  //   const functionB = ()=>{/*do sth*/}
+  //   const functionC = ()=>{
+  //     console.log(666);}
+  //   return new Map([
+  //     [/^guest_[1-4]$/,functionA],
+  //     [/^guest_5$/,functionB],
+  //     [/^guest_.*$/,functionC],
+  //     ['default',functionC],
+  //     //...
+  //   ])
+  // }
+  // onButtonClick = (identity,status)=>{
+  //   let action = [...actions()].filter(([key,value])=>(key.test(`${identity}_${status}`)))
+  //   action.forEach(([key,value])=>value.call(this))
+  // }
+
+</script>
+</html>

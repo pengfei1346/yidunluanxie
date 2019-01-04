@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div></div>
+</body>
+<script>
+    //闭包
+    // var c = {
+    //     msg:'',
+    //     func:function (val) {
+    //         console.log(val);
+    //     }
+    // }
+    // c.func(0)
+
+    //递归 自己调用自己
+    // function sum(n){
+    //     if(n==1) return 1;
+    //     return sum(n-1) + n;
+    // }
+
+
+    var option = {
+        enableHighAccuracy:true, //设置提升定位的精准度
+        maximumAge:0,  //禁用缓存
+        timeout:30000  //开始获取定位信息30秒后超时
+    }
+    if(navigator.geolocation){  //判断是否支持Geolocation API
+        navigator.geolocation.getCurrentPosition(showPosition,showError,option)
+    }
+    function showPosition(position){
+        var lat = position.coords.latitude;  //获取纬度
+        var lon = position.coords.longitude;  //获取经度
+        alert("您的纬度是:"+lat+ "，经度是："+lon);
+    }
+    function showError(error){
+        switch(error.code){
+            case error.PERMISSION_DENIED:
+                alert("您拒绝了地理定位服务");
+                break;
+            case error.POSITION_UNAVAILABLE:
+                alert("无法获取您的位置");
+                break;
+            case error.TIMEOUT:
+                alert("超时");
+                break;
+        }
+    }
+
+</script>
+</html>

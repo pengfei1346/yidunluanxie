@@ -3,34 +3,48 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
       path:'/',
-      redirect:'/file'
+      redirect:'/slot'
     },
+    //
+    // {
+    //   path: '/file',
+    //   name: 'file',
+    //   component: () => import('@/views/fileschange')
+    // },
+    // {
+    //   path: '/father',
+    //   name: 'father',
+    //   component: () => import('@/views/father')
+    // },
+    // {
+    //   path: '/children',
+    //   name: 'children',
+    //   component: () => import('@/components/children')
+    // },
+    // {
+    //   path: '/modelfather',
+    //   component: () => import('@/views/model-father')
+    // },
+    // {
+    //   path: '/modelchild',
+    //   component: () => import('@/components/model-child')
+    // },
     {
-      path: '/file',
-      name: 'file',
-      component: () => import('@/views/fileschange')
+      path: '/slot',
+      component: () => import('@/views/slot')
     },
-    {
-      path: '/father',
-      name: 'father',
-      component: () => import('@/views/father')
-    },
-    {
-      path: '/children',
-      name: 'children',
-      component: () => import('@/components/children')
-    },
-    {
-      path: '/modelfather',
-      component: () => import('@/views/model-father')
-    },
-    {
-      path: '/modelchild',
-      component: () => import('@/components/model-child')
-    }
-  ]
+  ],
 })
+
+router.beforeEach((to, from, next) => {
+  // ...
+  console.log('to',to);
+  console.log('from',from);
+  console.log('next',next);
+})
+
+export default router
